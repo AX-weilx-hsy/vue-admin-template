@@ -31,6 +31,19 @@ import Layout from '@/layout'
  * all roles can be accessed
  */
 export const constantRoutes = [
+
+  {
+    path: '/database',
+    component: Layout,
+    children: [
+      {
+        path: 'customer',
+        name: 'Student',
+        component: () =>import('@/views/database/customer/index'),
+        meta: {title: '顾客',icon: 'form'}
+      }
+    ]
+  },
   {
     path: '/login',
     component: () => import('@/views/login/index'),
