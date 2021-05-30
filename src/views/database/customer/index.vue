@@ -22,7 +22,7 @@
             :visible.sync="dialogVisible"
             width="30%"
             :before-close="handleClose">
-                <el-form :model="formElement" label-width="80px">
+                <el-form :rules="rules" :model="formElement" label-width="80px">
                     <el-form-item label="name">
                         <el-input v-model="formElement.name"></el-input>
                     </el-form-item>
@@ -41,10 +41,10 @@
                     <el-form-item label="contacts">
                         <el-input v-model="formElement.contacts"></el-input>
                     </el-form-item>
-                    <el-form-item label="mobile">
+                    <el-form-item label="mobile" prop="mobile" :rules="rules.mobile">
                         <el-input v-model="formElement.mobile"></el-input>
                     </el-form-item>
-                    <el-form-item label="tel">
+                    <el-form-item label="tel" prop="tel" :rules="rules.tel">
                         <el-input v-model="formElement.tel"></el-input>
                     </el-form-item>
                     <el-form-item label="address">
@@ -59,7 +59,7 @@
                     <el-form-item label="pasword">
                         <el-input v-model="formElement.pasword"></el-input>
                     </el-form-item>
-                    <el-form-item label="email">
+                    <el-form-item label="email" prop="email" :rules="rules.email">
                         <el-input v-model="formElement.email"></el-input>
                     </el-form-item>
                     <el-form-item label="create_by">
@@ -255,10 +255,10 @@
                     <el-form-item label="contacts">
                         <el-input v-model="formElement.contacts"></el-input>
                     </el-form-item>
-                    <el-form-item label="mobile">
+                    <el-form-item label="mobile" prop="mobile" :rules="rules.mobile">
                         <el-input v-model="formElement.mobile"></el-input>
                     </el-form-item>
-                    <el-form-item label="tel">
+                    <el-form-item label="tel" prop="tel" :rules="rules.tel">
                         <el-input v-model="formElement.tel"></el-input>
                     </el-form-item>
                     <el-form-item label="address">
@@ -273,7 +273,7 @@
                     <el-form-item label="pasword">
                         <el-input v-model="formElement.pasword"></el-input>
                     </el-form-item>
-                    <el-form-item label="email">
+                    <el-form-item label="email" prop="email" :rules="rules.email">
                         <el-input v-model="formElement.email"></el-input>
                     </el-form-item>
                     <el-form-item label="create_by">
@@ -479,7 +479,34 @@
         }],
         currentTableData: [],
         multipleSelection: [],
-        currentPage: 1
+        currentPage: 1,
+        // 校验规则
+        rules: {
+            mobile: [
+                {
+                    required: true,
+                    pattern:  /^1[0-9]{10}$/,
+                    message: "mobile error !",
+                    trgger: "blur"
+                }
+            ],
+            tel: [
+                {
+                    required: true,
+                    pattern: /^([0-9]{3,4}-)?[0-9]{7,8}$/,
+                    message: "tel error !",
+                    trgger: "blur"
+                }
+            ],
+            email: [
+                {
+                    required: true,
+                    pattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
+                    message: "email error !",
+                    trgger: "blur"
+                }
+            ]
+        }
       }
     },
     created() {

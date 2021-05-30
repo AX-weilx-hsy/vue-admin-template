@@ -40,7 +40,7 @@ export const constantRoutes = [
         path: 'customer',
         name: 'Student',
         component: () =>import('@/views/database/customer/index'),
-        meta: {title: '顾客',icon: 'form'}
+        meta: {title: 'customer',icon: 'form'}
       }
     ]
   },
